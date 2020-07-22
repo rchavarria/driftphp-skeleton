@@ -18,6 +18,7 @@ namespace App\Controller;
 use Domain\Command\PutUser;
 use Drift\CommandBus\Bus\CommandBus;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class PutUserController {
 
@@ -28,9 +29,13 @@ class PutUserController {
     $this->bus = $bus;
   }
 
-  public function __invoke(string $uid) {
+  public function __invoke(Request $request) {
+    $uid = $request->get('uid');
+    $name = "Name $uid";
+    $command = new PutUser($uid, $name);
+
     return $this->bus
-      ->execute(new PutUser($uid))
+      ->execute($command)
       ->then(function ($foo) {
         return new JsonResponse('Creado');
       });
