@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Transformer\UserTransformer;
 use Domain\Model\User\User;
 use Domain\Model\User\UserNotFoundException;
 use Domain\Query\GetUser;
@@ -45,7 +46,7 @@ class GetUserController {
     return $this->bus
       ->ask(new GetUser($uid))
       ->then(function (User $user) {
-        return new JsonResponse($user);
+        return new JsonResponse(UserTransformer::toArray($user));
       })
       ->otherwise(function (UserNotFoundException $exception) {
         return new Response('Not found', 404);
