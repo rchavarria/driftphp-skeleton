@@ -15,8 +15,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Domain\Query\GetUser;
 use Drift\CommandBus\Bus\QueryBus;
-use React\Promise\FulfilledPromise;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -31,10 +31,13 @@ class GetUserController {
 
   public function __invoke(Request $request) {
     $uid = $request->get('uid');
-    return new FulfilledPromise(
-      new JsonResponse([
-        'message' => "Me has pasado el uid '$uid'",
-      ], 200)
-    );
+
+    return $this->bus
+      ->ask(new GetUser($uid))
+      ->then(function ($user) {
+        return new JsonResponse([
+          'message' => "User found: $user",
+        ], 200);
+      });
   }
 }
