@@ -2,6 +2,8 @@
 
 namespace Domain\Model\User;
 
-class UserNotFoundException {
+use Exception;
+
+class UserNotFoundException extends Exception {
 
 }
