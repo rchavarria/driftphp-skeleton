@@ -2,7 +2,3 @@
 default:
   path: /
   controller: App\Controller\DefaultController
-
-get_user:
-  path: /users/{uid}
-  controller: App\Controller\GetUserController
