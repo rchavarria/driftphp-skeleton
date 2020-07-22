@@ -23,7 +23,6 @@ use Drift\CommandBus\Bus\QueryBus;
 use Drift\CommandBus\Exception\InvalidCommandException;
 use React\Promise\PromiseInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class GetUserController {
