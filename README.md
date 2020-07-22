@@ -3,6 +3,9 @@
 Proyecto para aprender sobre [DriftPHP], un framework para desarrollar aplicaciones
 web de una forma muy diferente.
 
+Si no sabes cómo empezar, quizá te parezca bien comenzar por mi [documentación
+interna]
+
 ## README original
 
 Del repositorio oficial [driftphp/skeleton]:
@@ -29,3 +32,4 @@ you can check out packages as well.
 
 [DriftPHP]: https://driftphp.io
 [driftphp/skeleton]: https://github.com/driftphp/skeleton
+[documentación interna]: docs/index.md
