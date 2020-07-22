@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Domain\Model\User\UserNotFoundException;
 use Domain\Query\GetUser;
 use Drift\CommandBus\Bus\QueryBus;
 use Drift\CommandBus\Exception\InvalidCommandException;
@@ -33,19 +34,20 @@ class GetUserController {
   }
 
   /**
-   * @param Request $request
+   * @param string $uid
    *
    * @return PromiseInterface<Response>
    *
    * @throws InvalidCommandException
    */
-  public function __invoke(Request $request) {
-    $uid = $request->get('uid');
-
+  public function __invoke(string $uid) {
     return $this->bus
       ->ask(new GetUser($uid))
       ->then(function (array $user) {
         return new JsonResponse($user);
+      })
+      ->otherwise(function (UserNotFoundException $exception) {
+        return new Response('Not found', 404);
       });
   }
 }
