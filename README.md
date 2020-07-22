@@ -6,6 +6,14 @@ web de una forma muy diferente.
 Si no sabes cómo empezar, quizá te parezca bien comenzar por mi [documentación
 interna]
 
+## Descripción de la rama `get-user`
+
+Esta rama contiene la implementación del primer caso de uso, encontrar un usuario
+a través de su UID
+
+Esta rama añade un controlador, una query y un query handler para llevar esta
+tarea a cabo
+
 ## README original
 
 Del repositorio oficial [driftphp/skeleton]:
