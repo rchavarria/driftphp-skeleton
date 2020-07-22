@@ -26,6 +26,14 @@ services:
             - {name: controller.service_arguments}
 
     #
+    # Command handlers
+    #
+    Domain\CommandHandler\:
+        resource : "%app_path%/src/Domain/CommandHandler"
+        tags:
+            - 'command_handler'
+
+    #
     # Query handlers
     #
     Domain\QueryHandler\:
