@@ -17,8 +17,11 @@ namespace App\Controller;
 
 use Domain\Query\GetUser;
 use Drift\CommandBus\Bus\QueryBus;
+use Drift\CommandBus\Exception\InvalidCommandException;
+use React\Promise\PromiseInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class GetUserController {
 
@@ -29,13 +32,20 @@ class GetUserController {
     $this->bus = $bus;
   }
 
+  /**
+   * @param Request $request
+   *
+   * @return PromiseInterface<Response>
+   *
+   * @throws InvalidCommandException
+   */
   public function __invoke(Request $request) {
     $uid = $request->get('uid');
 
     return $this->bus
       ->ask(new GetUser($uid))
-      ->then(function ($user) {
-        return new JsonResponse($user, 200);
+      ->then(function (array $user) {
+        return new JsonResponse($user);
       });
   }
 }
