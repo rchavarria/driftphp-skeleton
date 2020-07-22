@@ -5,4 +5,12 @@ default:
 
 get-user:
   path: /users/{uid}
+  methods:
+    - GET
   controller: App\Controller\GetUserController
+
+put-user:
+  path: /users/{uid}
+  methods:
+    - PUT
+  controller: App\Controller\PutUserController
