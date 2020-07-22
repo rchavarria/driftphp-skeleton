@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Domain\QueryHandler;
+namespace Domain\QueryHandler;
 
 use Domain\Query\GetUser;
 
 class GetUserHandler {
 
   public function handle(GetUser $getUser) {
-    // tiene que devolver un array
+    // mock user
     return [
-        'uid' => $getUser->getUid()
+      'uid' => $getUser->getUid()
     ];
   }
 }

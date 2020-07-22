@@ -36,7 +36,8 @@ class GetUserController {
       ->ask(new GetUser($uid))
       ->then(function ($user) {
         return new JsonResponse([
-          'message' => "User found: $user",
+          'message' => 'User found',
+          'user' => $user
         ], 200);
       });
   }
