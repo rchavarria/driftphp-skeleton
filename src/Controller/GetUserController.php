@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Domain\Model\User\User;
 use Domain\Model\User\UserNotFoundException;
 use Domain\Query\GetUser;
 use Drift\CommandBus\Bus\QueryBus;
@@ -43,7 +44,7 @@ class GetUserController {
   public function __invoke(string $uid) {
     return $this->bus
       ->ask(new GetUser($uid))
-      ->then(function (array $user) {
+      ->then(function (User $user) {
         return new JsonResponse($user);
       })
       ->otherwise(function (UserNotFoundException $exception) {

@@ -26,8 +26,6 @@ class GetUserHandler {
       return reject(new UserNotFoundException());
     }
 
-    return resolve([
-      'uid' => $uid
-    ]);
+    return resolve(new User($uid));
   }
 }
