@@ -35,10 +35,7 @@ class GetUserController {
     return $this->bus
       ->ask(new GetUser($uid))
       ->then(function ($user) {
-        return new JsonResponse([
-          'message' => 'User found',
-          'user' => $user
-        ], 200);
+        return new JsonResponse($user, 200);
       });
   }
 }
