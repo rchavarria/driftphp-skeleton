@@ -14,13 +14,16 @@ class PutUserHandler {
    *
    * @return PromiseInterface
    */
-  public function handle(PutUser $putUser): PromiseInterface {
+  public function handle(PutUser $putUser): void {
     $user = new User(
       $putUser->getUid(),
       $putUser->getName()
     );
 
-    return resolve($user);
+    // simular que se crea el usuario
+    $uid = $user->getUid();
+    $name = $user->getName();
+    echo 'User with uid ', $uid, 'and name ', $name, ' created', PHP_EOL;
   }
 
 }

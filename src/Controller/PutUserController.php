@@ -36,8 +36,8 @@ class PutUserController {
 
     return $this->bus
       ->execute($command)
-      ->then(function ($foo) {
-        return new JsonResponse('Creado');
+      ->then(function () {
+        return new JsonResponse('Created', 201);
       });
   }
 }
