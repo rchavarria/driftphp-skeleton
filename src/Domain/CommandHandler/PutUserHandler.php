@@ -23,7 +23,7 @@ class PutUserHandler {
     // simular que se crea el usuario
     $uid = $user->getUid();
     $name = $user->getName();
-    echo 'User with uid ', $uid, 'and name ', $name, ' created', PHP_EOL;
+    echo 'User with uid [', $uid, '] and name [', $name, '] created', PHP_EOL;
   }
 
 }

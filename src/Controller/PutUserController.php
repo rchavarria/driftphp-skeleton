@@ -30,8 +30,11 @@ class PutUserController {
   }
 
   public function __invoke(Request $request) {
+    $body = $request->getContent();
+    $data = json_decode($body);
+
     $uid = $request->get('uid');
-    $name = "Name $uid";
+    $name = $data->name;
     $command = new PutUser($uid, $name);
 
     return $this->bus
