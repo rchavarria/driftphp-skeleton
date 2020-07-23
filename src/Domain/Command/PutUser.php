@@ -2,24 +2,19 @@
 
 namespace Domain\Command;
 
+use Domain\Model\User\User;
+
 class PutUser {
 
-  /** @var string */
-  private $uid;
-  /** @var string */
-  private $name;
+  /** @var User */
+  private $user;
 
-  public function __construct(string $uid, string $name) {
-    $this->uid = $uid;
-    $this->name = $name;
+  public function __construct(User $user) {
+    $this->user = $user;
   }
 
-  public function getUid(): string {
-    return $this->uid;
-  }
-
-  public function getName(): string {
-    return $this->name;
+  public function getUser(): User {
+    return $this->user;
   }
 
 }

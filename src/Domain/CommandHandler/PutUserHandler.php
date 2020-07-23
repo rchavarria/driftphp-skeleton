@@ -15,10 +15,7 @@ class PutUserHandler {
    * @return PromiseInterface
    */
   public function handle(PutUser $putUser): void {
-    $user = new User(
-      $putUser->getUid(),
-      $putUser->getName()
-    );
+    $user = $putUser->getUser();
 
     // simular que se crea el usuario
     $uid = $user->getUid();

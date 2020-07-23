@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Transformer\UserTransformer;
 use Domain\Command\PutUser;
 use Drift\CommandBus\Bus\CommandBus;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -31,11 +32,11 @@ class PutUserController {
 
   public function __invoke(Request $request) {
     $body = $request->getContent();
-    $data = json_decode($body);
+    $userAsArray = json_decode($body, true);
+    $userAsArray['uid'] = $request->get('uid');
 
-    $uid = $request->get('uid');
-    $name = $data->name;
-    $command = new PutUser($uid, $name);
+    $user = UserTransformer::fromArray($userAsArray);
+    $command = new PutUser($user);
 
     return $this->bus
       ->execute($command)
