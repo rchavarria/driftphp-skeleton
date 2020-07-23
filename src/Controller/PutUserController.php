@@ -17,9 +17,11 @@ namespace App\Controller;
 
 use App\Controller\Transformer\UserTransformer;
 use Domain\Command\PutUser;
+use Domain\Model\User\NameTooShortException;
 use Drift\CommandBus\Bus\CommandBus;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PutUserController {
 
@@ -43,6 +45,11 @@ class PutUserController {
       ->then(function () use ($user) {
         $uid = $user->getUid();
         return new JsonResponse("User with uid [$uid] will be created", 202);
+      })
+
+      // this exception can be thrown by a middleware, validating some user's data
+      ->otherwise(function (NameTooShortException $e) {
+        return new Response('Name must have more than 5 characters', 400);
       });
   }
 }
