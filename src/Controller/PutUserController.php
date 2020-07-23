@@ -40,8 +40,9 @@ class PutUserController {
 
     return $this->bus
       ->execute($command)
-      ->then(function () {
-        return new JsonResponse('Created', 201);
+      ->then(function () use ($user) {
+        $uid = $user->getUid();
+        return new JsonResponse("User with uid [$uid] will be created", 202);
       });
   }
 }
