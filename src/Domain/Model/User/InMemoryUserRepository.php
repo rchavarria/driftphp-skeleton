@@ -24,6 +24,7 @@ class InMemoryUserRepository implements UserRepository {
   }
 
   function delete(string $uid): PromiseInterface {
-    // TODO: Implement delete() method.
+    unset($this->users[$uid]);
+    return resolve();
   }
 }

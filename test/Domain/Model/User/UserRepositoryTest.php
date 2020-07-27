@@ -66,4 +66,35 @@ abstract class UserRepositoryTest extends TestCase {
     await($repository->find('4321'), $this->loop);
   }
 
+  public function testDeleteNonExistingUser() {
+    $repository = $this->createEmptyRepository($this->loop);
+    await($repository->delete('1234'), $this->loop);
+
+    $this->expectNotToPerformAssertions();
+  }
+
+  public function testDeleteExistingUser() {
+    $repository = $this->createEmptyRepository($this->loop);
+
+    $user1 = new User('1234', 'Percebes');
+    await($repository->save($user1), $this->loop);
+    $user = await($repository->find('1234'), $this->loop);
+    $this->assertEquals($user, $user1);
+
+    await($repository->delete('1234'), $this->loop);
+    $this->expectException(UserNotFoundException::class);
+    await($repository->find('4321'), $this->loop);
+  }
+
+  public function testDeleteTwice() {
+    $repository = $this->createEmptyRepository($this->loop);
+    $user = new User('1234', 'Percebes');
+    await($repository->save($user), $this->loop);
+
+    // delete
+    await($repository->delete('1234'), $this->loop);
+    await($repository->delete('1234'), $this->loop);
+
+    $this->expectNotToPerformAssertions();
+  }
 }
