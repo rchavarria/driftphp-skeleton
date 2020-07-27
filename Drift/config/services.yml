@@ -55,7 +55,7 @@ services:
 
 
     #
-    # Defino qué implementación usar para el repo
+    # Implementation to use for UserRepository
     #
     Domain\Model\User\InMemoryUserRepository:
     Domain\Model\User\UserRepository:
