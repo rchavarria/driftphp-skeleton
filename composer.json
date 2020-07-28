@@ -15,17 +15,22 @@
     "drift/server": "^0.1.2",
     "drift/react-functions": "^0.1",
     "drift/command-bus-bundle": "*",
-    "drift/phpunit-bridge": "*"
+    "drift/phpunit-bridge": "*",
+    "drift/dbal": "0.1.2",
+    "drift/dbal-bundle": "*",
+    "clue/reactphp-sqlite": "*",
+    "react/mysql": "*"
   },
 
   "autoload": {
     "psr-4": {
       "App\\": "src/",
       "Domain\\": "src/Domain",
-      "Infrastructure\\": "src",
+      "Infrastructure\\": "src/",
       "Drift\\": "Drift/",
 
-      "Test\\": "test/"
+      "Test\\": "test/",
+      "Test\\Infrastructure\\": "test/"
     }
   }
 }
