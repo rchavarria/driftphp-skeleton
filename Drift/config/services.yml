@@ -68,5 +68,6 @@ services:
     # Implementation to use for UserRepository
     #
     Domain\Model\User\InMemoryUserRepository:
+    Infrastructure\DBAL\Model\User\DBALUserRepository:
     Domain\Model\User\UserRepository:
-        alias: Domain\Model\User\InMemoryUserRepository
+        alias: Infrastructure\DBAL\Model\User\DBALUserRepository
