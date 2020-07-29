@@ -35,43 +35,30 @@ class DBALUserRepository implements UserRepository {
   }
 
   function find(string $uid): PromiseInterface {
+    $queryBuilder = $this
+      ->connection
+      ->createQueryBuilder();
+
+    $queryBuilder->select('*')
+      ->from('users', 'u')
+      ->where('u.uid = ?')
+      ->setParameters([ $uid ])
+      ->setMaxResults(1);
+
     return $this
       ->connection
-      ->findOneBy('users', [ 'uid' => $uid ])
-      ->then(function ($userAsArray) {
+      ->query($queryBuilder)
+      ->then(function (Result $result) use ($uid) {
+        $userAsArray = $result->fetchFirstRow();
+        if (is_null($userAsArray)) {
+          throw new UserNotFoundException("User with id [$uid] not found");
+        }
+
         return new User(
           $userAsArray['uid'],
           $userAsArray['name']
         );
-      })
-      ->otherwise(function () use ($uid) {
-        throw new UserNotFoundException("User with id [$uid] not found");
       });
-
-//    $queryBuilder = $this
-//      ->connection
-//      ->createQueryBuilder();
-//
-//    $queryBuilder->select('*')
-//      ->from('users', 'u')
-//      ->where('u.uid = :uid')
-//      ->setParameter('uid', $uid)
-//      ->setMaxResults(1);
-//
-//    return $this
-//      ->connection
-//      ->query($queryBuilder)
-//      ->then(function (Result $result) use ($uid) {
-//        $userAsArray = $result->fetchFirstRow();
-//        if (is_null($userAsArray)) {
-//          throw new UserNotFoundException("User with id [$uid] not found");
-//        }
-//
-//        return new User(
-//          $userAsArray['uid'],
-//          $userAsArray['name']
-//        );
-//      });
   }
 
   function delete(string $uid): PromiseInterface {
@@ -80,7 +67,8 @@ class DBALUserRepository implements UserRepository {
       ->delete('users', [ 'uid' => $uid ])
       ->then(function (Result $result) use ($uid) {
         // what to do if no user was found
-        if ($result->fetchCount() === 0) {
+        if ($result->getAffectedRows() !== 1) {
+          // TODO there is no test for this exception
           throw new UserNotFoundException("User with id [$uid] not found");
         }
 
