@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b2b13dafb03f467c17825d86c693b631",
+    "content-hash": "cbc07a87a879c772cc869176dee07e06",
     "packages": [
         {
             "name": "alecrabbit/php-cli-snake",
@@ -908,12 +908,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/driftphp/reactphp-dbal.git",
-                "reference": "cd1e0e5c2d5d33d5381f5a4dec66e65d730417b9"
+                "reference": "2625da95089048d527c0755663717477a9258eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/driftphp/reactphp-dbal/zipball/cd1e0e5c2d5d33d5381f5a4dec66e65d730417b9",
-                "reference": "cd1e0e5c2d5d33d5381f5a4dec66e65d730417b9",
+                "url": "https://api.github.com/repos/driftphp/reactphp-dbal/zipball/2625da95089048d527c0755663717477a9258eb4",
+                "reference": "2625da95089048d527c0755663717477a9258eb4",
                 "shasum": ""
             },
             "require": {
@@ -1006,6 +1006,58 @@
             ],
             "description": "DriftPHP integration for DBAL",
             "time": "2020-03-10T08:44:46+00:00"
+        },
+        {
+            "name": "drift/event-bus-bundle",
+            "version": "0.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/driftphp/event-bus-bundle.git",
+                "reference": "70e5d1a2c457f41cf1e1f83441a85b4c4333da33"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/driftphp/event-bus-bundle/zipball/70e5d1a2c457f41cf1e1f83441a85b4c4333da33",
+                "reference": "70e5d1a2c457f41cf1e1f83441a85b4c4333da33",
+                "shasum": ""
+            },
+            "require": {
+                "clue/block-react": "^1.3",
+                "drift/console-bridge": "0.1.*",
+                "drift/event-loop-utils": "0.1.*",
+                "drift/http-kernel": "0.1.*, >=0.1.7",
+                "mmoreram/base-bundle": "^2.1.2",
+                "php": "^7.3",
+                "symfony/console": "^5.0.0",
+                "symfony/dependency-injection": "^5.0.0",
+                "symfony/proxy-manager-bridge": "^5.0.0"
+            },
+            "require-dev": {
+                "drift/amqp-bundle": "0.1.*, >=0.1.2",
+                "symfony/process": "^5.0.0"
+            },
+            "suggest": {
+                "drift/amqp-bundle": "Install this bundle to use AMQP as a queue system"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Drift\\EventBus\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marc Morera",
+                    "email": "yuhu@mmoreram.com"
+                }
+            ],
+            "description": "Event Bus for DriftPHP, a framework on top of Symfony and ReactPHP components",
+            "homepage": "https://github.com/driftphp/event-bus-bundle",
+            "time": "2020-05-25T13:29:32+00:00"
         },
         {
             "name": "drift/event-loop-utils",

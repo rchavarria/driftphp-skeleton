@@ -18,6 +18,7 @@
     "drift/phpunit-bridge": "*",
     "drift/dbal": "0.1.2",
     "drift/dbal-bundle": "*",
+    "drift/event-bus-bundle": "*",
     "clue/reactphp-sqlite": "*",
     "react/mysql": "*"
   },

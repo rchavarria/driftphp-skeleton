@@ -71,3 +71,4 @@ services:
     Infrastructure\DBAL\Model\User\DBALUserRepository:
     Domain\Model\User\UserRepository:
         alias: Infrastructure\DBAL\Model\User\DBALUserRepository
+#        alias: Domain\Model\User\InMemoryUserRepository
