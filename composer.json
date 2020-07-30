@@ -19,6 +19,7 @@
     "drift/dbal": "0.1.2",
     "drift/dbal-bundle": "*",
     "drift/event-bus-bundle": "*",
+    "drift/amqp-bundle": "*",
     "clue/reactphp-sqlite": "*",
     "react/mysql": "*"
   },

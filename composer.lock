@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cbc07a87a879c772cc869176dee07e06",
+    "content-hash": "8c8900b460be462db1b6535bd58d7f9c",
     "packages": [
         {
             "name": "alecrabbit/php-cli-snake",
@@ -53,6 +53,62 @@
                 "spinner"
             ],
             "time": "2019-11-01T19:34:36+00:00"
+        },
+        {
+            "name": "bunny/bunny",
+            "version": "v0.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jakubkulhan/bunny.git",
+                "reference": "563b55c3a4381672811faee3c370c73593ccc1ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jakubkulhan/bunny/zipball/563b55c3a4381672811faee3c370c73593ccc1ba",
+                "reference": "563b55c3a4381672811faee3c370c73593ccc1ba",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.0",
+                "psr/log": "~1.0",
+                "react/event-loop": "^1.0 || ^0.5 || ^0.4",
+                "react/promise": "~2.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bunny\\": "src/Bunny/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Kulhan",
+                    "email": "jakub.kulhan@gmail.com"
+                }
+            ],
+            "description": "Performant pure-PHP AMQP (RabbitMQ) sync/async (ReactPHP) library",
+            "keywords": [
+                "AMQP",
+                "bunny",
+                "exchange",
+                "message",
+                "messaging",
+                "queue",
+                "queueing",
+                "rabbit",
+                "rabbitmq",
+                "react",
+                "react-php",
+                "reactphp"
+            ],
+            "time": "2020-04-28T18:22:37+00:00"
         },
         {
             "name": "cakephp/core",
@@ -808,6 +864,49 @@
                 "instantiate"
             ],
             "time": "2020-05-29T17:27:14+00:00"
+        },
+        {
+            "name": "drift/amqp-bundle",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/driftphp/amqp-bundle.git",
+                "reference": "cf9e8a25b36b5f772875f0b556f2082ca4a4a89d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/driftphp/amqp-bundle/zipball/cf9e8a25b36b5f772875f0b556f2082ca4a4a89d",
+                "reference": "cf9e8a25b36b5f772875f0b556f2082ca4a4a89d",
+                "shasum": ""
+            },
+            "require": {
+                "bunny/bunny": "^0.4.1",
+                "drift/http-kernel": "0.1.*, >=0.1.5",
+                "mmoreram/base-bundle": "^2.1",
+                "php": "^7.3",
+                "symfony/dependency-injection": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Drift\\AMQP\\": "."
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marc Morera",
+                    "email": "yuhu@mmoreram.com"
+                }
+            ],
+            "description": "AMQP Bundle for DriftPHP, a framework on top of Symfony and ReactPHP components",
+            "time": "2020-03-08T16:09:11+00:00"
         },
         {
             "name": "drift/command-bus-bundle",
