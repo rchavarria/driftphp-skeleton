@@ -2,6 +2,7 @@
 
 namespace Infrastructure\DBAL\Model\User;
 
+use Domain\Model\User\PersistentUserRepository;
 use Domain\Model\User\User;
 use Domain\Model\User\UserNotFoundException;
 use Domain\Model\User\UserRepository;
@@ -9,7 +10,7 @@ use Drift\DBAL\Connection;
 use Drift\DBAL\Result;
 use React\Promise\PromiseInterface;
 
-class DBALUserRepository implements UserRepository {
+class DBALUserRepository implements PersistentUserRepository {
 
   /** @var Connection */
   private $connection;
@@ -73,6 +74,30 @@ class DBALUserRepository implements UserRepository {
         }
 
         return true;
+      });
+  }
+
+  function findAll(): PromiseInterface {
+    $queryBuilder = $this
+      ->connection
+      ->createQueryBuilder()
+      ->select('*')
+      ->from('users', 'u');
+
+    return $this
+      ->connection
+      ->query($queryBuilder)
+      ->then(function (Result $result) {
+        $usersAsArray = $result->fetchAllRows();
+
+        $users = [];
+        foreach ($usersAsArray as $userAsArray) {
+          $uid = $userAsArray['uid'];
+          $name = $userAsArray['name'];
+          $users[$uid] = new User($uid, $name);
+        }
+
+        return $users;
       });
   }
 }

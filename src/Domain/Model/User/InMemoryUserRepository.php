@@ -10,6 +10,14 @@ class InMemoryUserRepository implements UserRepository {
 
   private $users = [];
 
+  /**
+   * @param User[] $users Tiene que ser un array asociativo donde las claves sean
+   * los uids
+   */
+  public function loadFromArray(array $users): void {
+    $this->users = $users;
+  }
+
   function save(User $user): PromiseInterface {
     $this->users[$user->getUid()] = $user;
     return resolve();
