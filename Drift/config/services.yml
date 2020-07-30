@@ -16,6 +16,17 @@ command_bus:
         middlewares:
             - Domain\Middleware\CheckUserNameLength
 
+event_bus:
+  exchanges:
+    my_events: events_amqp
+  router:
+    _all: my_events
+  async_pass_through: false
+  async_adapter:
+    adapter: amqp
+    amqp:
+      host: 192.168.1.143
+
 dbal:
   connections:
     main:
@@ -68,7 +79,12 @@ services:
     # Implementation to use for UserRepository
     #
     Domain\Model\User\InMemoryUserRepository:
+    Domain\Model\User\ComposedUserRepository:
     Infrastructure\DBAL\Model\User\DBALUserRepository:
     Domain\Model\User\UserRepository:
-        alias: Infrastructure\DBAL\Model\User\DBALUserRepository
+        alias: Domain\Model\User\ComposedUserRepository
+#        alias: Infrastructure\DBAL\Model\User\DBALUserRepository
 #        alias: Domain\Model\User\InMemoryUserRepository
+
+    Domain\Model\User\PersistentUserRepository:
+        alias: Infrastructure\DBAL\Model\User\DBALUserRepository
