@@ -3,8 +3,10 @@
 namespace Domain\CommandHandler;
 
 use Domain\Command\DeleteUser;
+use Domain\Event\UserWasDeleted;
 use Domain\Model\User\UserNotFoundException;
 use Domain\Model\User\UserRepository;
+use Drift\EventBus\Bus\EventBus;
 use React\Promise\PromiseInterface;
 
 class DeleteUserHandler {
@@ -13,9 +15,12 @@ class DeleteUserHandler {
    * @var UserRepository
    */
   private $repository;
+  /** @var EventBus */
+  private $eventBus;
 
-  public function __construct(UserRepository $repository) {
+  public function __construct(UserRepository $repository, EventBus $eventBus) {
     $this->repository = $repository;
+    $this->eventBus = $eventBus;
   }
 
   /**
@@ -28,6 +33,11 @@ class DeleteUserHandler {
   public function handle(DeleteUser $deleteUser): PromiseInterface {
     return $this
       ->repository
-      ->delete($deleteUser->getUid());
+      ->delete($deleteUser->getUid())
+      ->then(function () use ($deleteUser) {
+        return $this
+          ->eventBus
+          ->dispatch(new UserWasDeleted($deleteUser->getUid()));
+      });
   }
 }
