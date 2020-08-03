@@ -20,6 +20,7 @@
     "drift/dbal-bundle": "*",
     "drift/event-bus-bundle": "*",
     "drift/amqp-bundle": "*",
+    "drift/websocket-bundle": "*",
     "clue/reactphp-sqlite": "*",
     "react/mysql": "*"
   },
