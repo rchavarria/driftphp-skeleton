@@ -5,9 +5,9 @@ namespace Domain\Model\User;
 use Domain\Event\UserWasCreated;
 use Domain\Event\UserWasDeleted;
 use Drift\HttpKernel\AsyncKernelEvents;
-use Drift\HttpKernel\Event\DomainEventEnvelope;
 use React\Promise\PromiseInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class ComposedUserRepository implements UserRepository, EventSubscriberInterface {
 
@@ -33,9 +33,8 @@ class ComposedUserRepository implements UserRepository, EventSubscriberInterface
     return $this->persistent->delete($uid);
   }
 
-  public function loadAllUsersToMemory(DomainEventEnvelope $event): PromiseInterface {
-    // this way, I can fetch the domain event emitted in the original server
-    $myDomainEvent = $event->getDomainEvent();
+  public function loadAllUsersToMemory(Event $event): PromiseInterface {
+    echo '* load all users into memory', PHP_EOL;
 
     return $this
       ->persistent
