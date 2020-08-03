@@ -82,6 +82,12 @@ services:
     Domain\Middleware\:
         resource : "%app_path%/src/Domain/Middleware"
 
+    #
+    # Broadcasters
+    #
+    Domain\EventSubscriber\:
+        resource : "%app_path%/src/Domain/EventSubscriber"
+
 
     #
     # Implementation to use for UserRepository
