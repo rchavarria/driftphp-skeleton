@@ -30,3 +30,12 @@ services:
     volumes:
       - /c/Perfil/PhpstormProjects/driftphp-skeleton:/var/www
     command: "php vendor/bin/server watch 0.0.0.0:8001 --exchange=my_events"
+
+  wbs-server:
+    image: "driftphp/base"
+    ports:
+      - "9009:9009"
+    volumes:
+      - /c/Perfil/PhpstormProjects/driftphp-skeleton:/var/www
+#      - /c/Perfil/PhpstormProjects/driftphp-skeleton/ws-var:/var/www/var
+    command: "bin/console websocket:run 0.0.0.0:9009 --route=events --exchange=my_events"
