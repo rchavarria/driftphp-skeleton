@@ -37,6 +37,14 @@ dbal:
       password: root
       dbname: usersdb
 
+websocket:
+  routes:
+    events:
+      path: /events
+    other-events:
+      path: /other-events
+
+
 # config/services.yaml
 services:
     _defaults:
