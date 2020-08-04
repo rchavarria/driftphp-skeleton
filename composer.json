@@ -15,14 +15,9 @@
     "drift/server": "^0.1.2",
     "drift/react-functions": "^0.1",
     "drift/command-bus-bundle": "*",
-    "drift/phpunit-bridge": "*",
-    "drift/dbal": "0.1.2",
-    "drift/dbal-bundle": "*",
     "drift/event-bus-bundle": "*",
     "drift/amqp-bundle": "*",
-    "drift/websocket-bundle": "*",
-    "clue/reactphp-sqlite": "*",
-    "react/mysql": "*"
+    "drift/websocket-bundle": "*"
   },
 
   "autoload": {

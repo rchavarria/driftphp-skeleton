@@ -27,16 +27,6 @@ event_bus:
     amqp:
       host: 192.168.1.143
 
-dbal:
-  connections:
-    main:
-      driver: mysql
-      host: 192.168.1.143
-      port: 3306
-      user: root
-      password: root
-      dbname: usersdb
-
 websocket:
   routes:
     events:
@@ -53,52 +43,7 @@ services:
         public: true
 
     #
-    # Controllers
-    #
-    App\Controller\:
-        resource : "%app_path%/src/Controller/*"
-        tags:
-            - {name: controller.service_arguments}
-
-    #
-    # Command handlers
-    #
-    Domain\CommandHandler\:
-        resource : "%app_path%/src/Domain/CommandHandler"
-        tags:
-            - { name: command_handler }
-
-    #
-    # Query handlers
-    #
-    Domain\QueryHandler\:
-        resource : "%app_path%/src/Domain/QueryHandler"
-        tags:
-          - { name: query_handler }
-
-    #
-    # Middlewares
-    #
-    Domain\Middleware\:
-        resource : "%app_path%/src/Domain/Middleware"
-
-    #
     # Broadcasters
     #
     Domain\EventSubscriber\:
         resource : "%app_path%/src/Domain/EventSubscriber"
-
-
-    #
-    # Implementation to use for UserRepository
-    #
-    Domain\Model\User\InMemoryUserRepository:
-    Domain\Model\User\ComposedUserRepository:
-    Infrastructure\DBAL\Model\User\DBALUserRepository:
-    Domain\Model\User\UserRepository:
-        alias: Domain\Model\User\ComposedUserRepository
-#        alias: Infrastructure\DBAL\Model\User\DBALUserRepository
-#        alias: Domain\Model\User\InMemoryUserRepository
-
-    Domain\Model\User\PersistentUserRepository:
-        alias: Infrastructure\DBAL\Model\User\DBALUserRepository
