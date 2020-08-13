@@ -5,7 +5,6 @@ namespace Infrastructure\DBAL\Model\User;
 use Domain\Model\User\PersistentUserRepository;
 use Domain\Model\User\User;
 use Domain\Model\User\UserNotFoundException;
-use Domain\Model\User\UserRepository;
 use Drift\DBAL\Connection;
 use Drift\DBAL\Result;
 use React\Promise\PromiseInterface;
@@ -21,7 +20,7 @@ class DBALUserRepository implements PersistentUserRepository {
 
   function save(User $user): PromiseInterface {
     //
-    // aquí estamos trasformando un usuario en un array, como los transformers del contorller
+    // aquí estamos trasformando un usuario en un array, como los transformers del controller
     //
     $ids = [
       'uid' => $user->getUid()
